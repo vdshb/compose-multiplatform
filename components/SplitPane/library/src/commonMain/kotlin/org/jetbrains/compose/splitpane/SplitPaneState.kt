@@ -21,6 +21,10 @@ class SplitPaneState(
     internal var maxPosition: Float = Float.POSITIVE_INFINITY
 
     fun dispatchRawMovement(delta: Float) {
+        if (maxPosition === Float.POSITIVE_INFINITY) {
+            positionPercentage = positionPercentage + delta
+            return
+        }
         val movableArea = maxPosition - minPosition
         if (movableArea > 0) {
             positionPercentage =
